@@ -1,5 +1,7 @@
+# Copyright (C) 2009 Mokoid Open Source Project
+# Copyright (C) 2009,2010 Moko365 Inc.
 #
-# Copyright (C) 2008 The Android Open Source Project
+# Author: Jollen Chen <jollen@moko365.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +14,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-
-# This makefile supplies the rules for building a library of JNI code for
-# use by our example platform shared library.
 
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
@@ -33,6 +31,7 @@ LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
 
 # All of the source files that we will compile.
 LOCAL_SRC_FILES:= \
+	onload.cpp \
 	com_mokoid_server_LedService.cpp
 
 # All of the shared libraries we link against.

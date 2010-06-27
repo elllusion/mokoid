@@ -1,5 +1,8 @@
 /*
- * Copyright (C) 2009 The Mokoid Open Source Project
+ * Copyright (C) 2009 Mokoid Open Source Project
+ * Copyright (C) 2009,2010 Moko365 Inc.
+ *
+ * Author: Jollen Chen <jollen@moko365.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +17,7 @@
  * limitations under the License.
  */
 
+
 package com.mokoid.server;
 
 import android.util.Config;
@@ -25,7 +29,7 @@ import android.os.RemoteException;
 import android.os.IBinder;
 import mokoid.hardware.ILedService;
 
-public final class LedService extends ILedService.Stub {    
+public final class LedService extends ILedService.Stub {
 
     static {
         System.load("/system/lib/libmokoid_runtime.so");
