@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2009 Mokoid Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "MokoidPlatform"
+#define LOG_TAG "Mokoid"
 #include "utils/Log.h"
 
 #include <stdlib.h>
@@ -29,8 +29,8 @@
 
 struct led_control_device_t *sLedDevice = NULL;
 
-static jboolean mokoid_setOn(JNIEnv* env, jobject thiz, jint led) {
-
+static jboolean mokoid_setOn(JNIEnv* env, jobject thiz, jint led) 
+{
     LOGI("LedService JNI: mokoid_setOn() is invoked.");
 
     if (sLedDevice == NULL) {
@@ -41,15 +41,16 @@ static jboolean mokoid_setOn(JNIEnv* env, jobject thiz, jint led) {
     }
 }
 
-static jboolean mokoid_setOff(JNIEnv* env, jobject thiz, jint led) {
-
+static jboolean mokoid_setOff(JNIEnv* env, jobject thiz, jint led) 
+{
     LOGI("LedService JNI: mokoid_setOff() is invoked.");
+
 
     if (sLedDevice == NULL) {
         LOGI("LedService JNI: sLedDevice was not fetched correctly.");
         return -1;
     } else {
-        return sLedDevice->set_on(sLedDevice, led);
+        return sLedDevice->set_off(sLedDevice, led);
     }
 }
 
@@ -60,8 +61,7 @@ static inline int led_control_open(const struct hw_module_t* module,
             LED_HARDWARE_MODULE_ID, (struct hw_device_t**)device);
 }
 
-static jboolean
-mokoid_init(JNIEnv *env, jclass clazz)
+static jboolean mokoid_init(JNIEnv *env, jclass clazz)
 {
     led_module_t* module;
 
@@ -77,7 +77,7 @@ mokoid_init(JNIEnv *env, jclass clazz)
     return -1;
 }
 
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------------
 
 /*
  * Array of methods.
@@ -86,15 +86,12 @@ mokoid_init(JNIEnv *env, jclass clazz)
  * signature, and a pointer to the native implementation.
  */
 static const JNINativeMethod gMethods[] = {
-    {"_init",	  	"()Z",
-			(void*)mokoid_init},
-    { "_set_on",          "(I)Z",
-                        (void*)mokoid_setOn },
-    { "_set_off",          "(I)Z",
-                        (void*)mokoid_setOff },
+    { "_init",	  	"()Z",	(void *)mokoid_init },
+    { "_set_on",        "(I)Z", (void *)mokoid_setOn },
+    { "_set_off",       "(I)Z", (void *)mokoid_setOff },
 };
 
-static int registerMethods(JNIEnv* env) {
+int register_mokoid_server_LedService(JNIEnv* env) {
     static const char* const kClassName =
         "com/mokoid/server/LedService";
     jclass clazz;
@@ -116,31 +113,4 @@ static int registerMethods(JNIEnv* env) {
 
     /* fill out the rest of the ID cache */
     return 0;
-}
-
-// ----------------------------------------------------------------------------
-
-/*
- * This is called by the VM when the shared library is first loaded.
- */
-jint JNI_OnLoad(JavaVM* vm, void* reserved) {
-    JNIEnv* env = NULL;
-    jint result = -1;
-
-    if (vm->GetEnv((void**) &env, JNI_VERSION_1_4) != JNI_OK) {
-        LOGE("ERROR: GetEnv failed\n");
-        goto bail;
-    }
-    assert(env != NULL);
-
-    if (registerMethods(env) != 0) {
-        LOGE("ERROR: PlatformLibrary native registration failed\n");
-        goto bail;
-    }
-
-    /* success -- return valid version number */
-    result = JNI_VERSION_1_4;
-
-bail:
-    return result;
 }

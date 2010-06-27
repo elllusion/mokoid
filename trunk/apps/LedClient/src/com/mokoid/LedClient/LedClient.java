@@ -1,5 +1,8 @@
 /*
- * Copyright (C) 2007 The Android Open Source Project
+ * Copyright (C) 2009 Mokoid Open Source Project
+ * Copyright (C) 2009,2010 Moko365 Inc.
+ *
+ * Author: Jollen Chen <jollen@moko365.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 package com.mokoid.LedClient;
 import com.mokoid.server.LedService;
@@ -29,10 +33,10 @@ public class LedClient extends Activity {
         // Call an API on the library.
 	LedService ls = new LedService();
 	ls.setOn(1);
+	ls.setOff(2);
         
         TextView tv = new TextView(this);
-        tv.setText("LED 0 is on.");
+        tv.setText("LED 1 is on. LED 2 is off.");
         setContentView(tv);
     }
 }
-

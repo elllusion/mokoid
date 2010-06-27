@@ -1,7 +1,9 @@
 /* mokoid/hardware/ILedService.aidl
 **
-** Copyright 2009 The Mokoid Open Source Project
-** Copyright 2009 Moko365 Inc
+** Copyright (C) 2009 Mokoid Open Source Project
+** Copyright (C) 2009 Moko365 Inc
+**
+** Author: Jollen Chen <jollen@moko365.com>
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.

@@ -1,5 +1,7 @@
+# Copyright (C) 2009 Mokoid Open Source Project
+# Copyright (C) 2009,2010 Moko365 Inc.
 #
-# Copyright (C) 2008 The Android Open Source Project
+# Author: Jollen Chen <jollen@moko365.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +14,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-
-# This makefile is an example of writing an application that will link against
-# a custom shared library included with an Android system.
 
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)

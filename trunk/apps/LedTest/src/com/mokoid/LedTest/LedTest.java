@@ -1,5 +1,8 @@
 /*
- * Copyright (C) 2007 The Android Open Source Project
+ * Copyright (C) 2009 Mokoid Open Source Project
+ * Copyright (C) 2009,2010 Moko365 Inc.
+ *
+ * Author: Jollen Chen <jollen@moko365.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 package com.mokoid.LedTest;
 import mokoid.hardware.LedManager;
@@ -35,9 +39,6 @@ public class LedTest extends Activity implements View.OnClickListener {
 
         // Start LedService in a seperated process.
         startService(new Intent("com.mokoid.systemserver"));
-
-	// Just for testing. !! PLEASE DON't DO THIS !!
-	//LedService ls = new LedService();
 
         Button btn = new Button(this);
         btn.setText("Click to turn LED 1 On");
